@@ -1,3 +1,5 @@
+const BinarySearchTree = require('./BinarySearchTree')
+
 // 4. What does this program do?
 // Without running this code in your code editor, 
 // explain what the following program does. 
@@ -18,11 +20,28 @@ function tree(t){
 // Write an algorithm to find the height of a binary search tree. 
 // What is the time complexity of your algorithm?
 function height(bst) {
+    //if current node is null
     if(!bst) {
         return 0;
     } else {
-
+        // traverse through left and right nodes until you reach null 
+        if (bst.left && !bst.right) {
+            return 1 + height(bst.left);
+        } else if (bst.right && !bst.left) {
+            return 1 + height(bst.right);
+        } else if (!bst.right && !bst.left) {
+            return 1;
+        } else {
+            return 1 + max(height(bst.left), height(bst.right));
+        }
     }
+}
+
+function max(a, b) {
+    if (a > b) {
+        return a;
+    }
+    return b;
 }
 
 // 6. Is it a BST?

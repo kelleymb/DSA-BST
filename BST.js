@@ -10,7 +10,6 @@ function main() {
     BST.insert(2);
     BST.insert(5);
     BST.insert(7);
-
 };
 
 function main1() {
