@@ -47,7 +47,38 @@ function max(a, b) {
 // 6. Is it a BST?
 // Write an algorithm to check whether an arbitrary binary tree 
 // is a binary search tree, assuming the tree does not contain duplicates.
+function isAValidBinarySearchTree(bst) {
+    //what makes a valid BST? 
+    //nodes, leaf nodes and, nodes with 2 children, 1 left child or 1 right child
+    //in reference to the parent: left node has to smaller , every right node has to be larger
+    // prove things false first, what is absolutely not true- rule this out first
+    // GOAL: make it to the leaf node
 
+    // if tree does not have a left or right, return true, nothing wrong with a tree
+    // that has one element
+    if (!bst.left && !bst.right) {
+        return true;
+    }
+    // if there is a left 
+    if (bst.left) {
+        //left is greater, not a bst
+        if (bst.left.key > bst.key) {
+            return false;
+        }
+        // recursively call to check on subtrees of the left
+        // need to make it to the leaf node
+        return isAValidBinarySearchTree(bst.left);
+    }
+    // if there is a right
+    if (bst.right) {
+        //right is less, not a bst
+        if (bst.right.key < bst.key) {
+            return false;
+        }
+        // recursively call to check on subtrees of the right
+        return isAValidBinarySearchTree(bst.right);
+    }
+}
 
 // 7. 3rd largest node
 // Write an algorithm to find the 3rd largest node in a binary search tree.
